@@ -49,7 +49,7 @@ export default function RegistrationForm() {
       </Typography>
       <Grid  container spacing={3} columns={16}>
       <Grid item xs={8}>
-        <TextField id="name" autoComplete="off" onChange={handleInput} name="name" label="Name" variant="outlined" fullWidth />
+        <TextField id="name" autoComplete="off" onChange={handleInput} name="name" label="Name" variant="outlined"  placeholder="Enter your name" fullWidth />
         </Grid>
         <Grid item xs={8}>
         <TextField id="username" autoComplete="off" onChange={handleInput} name="username" label="User Name" variant="outlined" fullWidth />
