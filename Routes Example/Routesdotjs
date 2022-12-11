@@ -1,0 +1,23 @@
+import React from "react;
+import {BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
+import AddPerson from "../Components/AddPerson/AddPerson";
+import Upload from "../Components/Upload/Upload";
+import EditPerson from "../Components/EditPerson/EditPerson";
+
+
+const routing =() =>(
+   <div>
+     <BrowserRouter>
+     <Header/>
+     <Routes>
+         <Route path="/" element={<AddPerson/>} />
+         <Route path="EditPerson" element={<EditPerson/>} />
+         <Route path="Upload" element={<Upload/>} />
+     </Routes>
+     <Footer/>
+     </BrowserRouter>
+   </div>
+ );
+ export default routing;
