@@ -1,0 +1,74 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import './demo.css';
+
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '100px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
+
+export default function BasicCard() {
+  return (
+    <Card sx={{ minWidth: 275, }} variant="outlined" mt="0px">
+      <CardContent>
+      <Card sx={{ minWidth: 275}} className="h"  variant="outlined">
+      <CardContent>
+        <Typography variant="h6" className="ho" pl="10px">Vendor Information</Typography>
+       <TextField className="h1" id="outlined-basic" size='sm' label="Full Name" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" size='sm' label="Date of Birth" type="date" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" size='sm' label="Email" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" size='sm' label="Phone No." required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" size='sm' label="Country" required variant="outlined" />
+      </CardContent>
+      </Card>
+      <Card sx={{ minWidth: 275, mt:"15px"  }} variant="outlined">
+      <CardContent>
+      <Typography variant="h6" className="ho" pl="10px">Vendor Adress Information</Typography>
+       <TextField className="h1" id="outlined-basic" label="Address Line 1" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Address Line 2" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="City" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="State" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Zip Code" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Language Prefered" required variant="outlined" />
+      </CardContent>
+      </Card>
+      <Card sx={{ minWidth: 275, mt:"15px"  } }variant="outlined">
+      <CardContent>
+      <Typography variant="h6" className="ho" pl="10px">Trial Information</Typography>
+       <TextField className="h1" id="outlined-basic" label="Trial Name" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Trial Site(s)" required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Assignment Start Date" type="date"  required variant="outlined" />
+       <TextField className="h1" id="outlined-basic" label="Assignment End Date" type="date"  required variant="outlined" />
+      </CardContent>
+      </Card>
+      </CardContent>
+      
+    </Card>
+  );
+}
+
+
+
+
+
+
+.h{
+}
+.ho{
+  background-color: hsl(197, 96%, 51%);
+}
+.h1{
+  margin-top: 2%;
+  margin-right: 3%;
+  min-width: 46%;
+}
