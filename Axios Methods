@@ -1,1 +1,67 @@
+const[users, setUsers] = useState();
 
+
+
+
+{{ AXIOS  POST METHOD [ADD USER ] }}
+
+
+ const addUser = (user) =>{
+     axios
+        .post(`url`, user)
+        .then((response) =>{
+          let newUserData = [...users];
+          newUserdata.push(response.data);
+          setUsers(newUserdata);
+          console.log("Sucess");
+        });
+        .catch((err) =>{
+           console.log("Error", err);
+        });
+ };
+ 
+ 
+ 
+ {{ AXIOS GET METHOD }}
+ 
+ useEffect(() => {
+    axios
+      .get(`url`)
+      .then((res) =>{
+      const users = res.data;
+      setUsers(users);
+     });
+     .catch((err) =>{
+       console.log("Error", err );
+     )};
+   }, []);
+   
+   
+    
+ {{ AXIOS DELETE METHOD }}
+ 
+    const deleteUser = (id) =>{
+        axios
+        .delete(`url/${id}`)
+        .then((response) => {
+          setUsers(users.filter((user) => user.id !==id));
+        });
+        .catch((err) =>{
+          console.log("Error", err );
+     )};
+     };
+     
+     
+     
+  {{ AXIOS PUT METHOD [UPDATE USER] }}
+  
+    const updateUser = (id,updatedUser) =>{
+       axios
+         .put(`url/${id}`, updatedUser)
+         .then((response) =>{
+           setUsers(users.map((user) => (user.id === id ? response.data : user)));
+           });
+         .catch((err) =>{
+           console.log("Error", err );
+     )};
+    };
