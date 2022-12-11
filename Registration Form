@@ -55,10 +55,10 @@ export default function RegistrationForm() {
         <TextField id="username" autoComplete="off" onChange={handleInput} name="username" label="User Name" focused variant="outlined" fullWidth />
         </Grid>
         <Grid item xs={8}>
-        <TextField id="email" autoComplete="off" onChange={handleInput} name="email" label="Email" variant="outlined" fullWidth />
+        <TextField id="email" size="small" autoComplete="off" onChange={handleInput} name="email" label="Email" variant="outlined" fullWidth />
         </Grid>
         <Grid item xs={8}>
-        <TextField id="phone" autoComplete="off" onChange={handleInput} name="phone" label="Phone" variant="outlined" fullWidth />
+        <TextField id="phone" size="large" autoComplete="off" onChange={handleInput} name="phone" label="Phone" variant="outlined" fullWidth />
         </Grid>
         <Grid item xs={8}>
         <TextField id="password" autoComplete="off" onChange={handleInput} name="password" label="Password" variant="outlined" fullWidth />
