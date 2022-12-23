@@ -1,0 +1,181 @@
+import React,{useState,useEffect} from 'react';
+import {Box,TextField,Typography,InputLabel,MenuItem,FormControl,Select} from '@mui/material';
+
+
+
+export default function BasicTextFields() {
+
+  const [write,setWrite] = useState();
+  const [protocol,setProtocol] = useState();
+  const message =[ 
+    {
+     "TrialID": 1,
+     "TrialAlias": "xyz",
+     "Protocol": "20815294",
+      "CreatedBy":1,
+      "CreatedDate": "21/21/2022",
+      "ModifiedBy": null,
+      "ModifiedDate": "30/30/2022",
+      "TrialSites": [
+        {
+          "TrialID":1,
+          "SiteID": 2,
+          "SiteName": "Chennai",
+          "InvestigatorName":"Robin",
+          "TrialSiteCountry": "India",
+          "CreatedBy":1,
+          "CreatedDate": "30/30/2022",
+          "ModifiedBy": null,
+          "ModifiedDate": "30/30/2022"
+        },
+        {
+          "TrialID":1,
+          "SiteID": 3,
+          "SiteName": "London",
+          "InvestigatorName":"Robin",
+          "TrialSiteCountry": "UK",
+          "CreatedBy":1,
+          "CreatedDate": "30/30/2022",
+          "ModifiedBy": null,
+          "ModifiedDate": "30/30/2022"
+        },
+        {
+          "TrialID":1,
+          "SiteID": 1,
+          "SiteName": "LosAngelus",
+          "InvestigatorName":"Robin",
+          "TrialSiteCountry": "America",
+          "CreatedBy":1,
+          "CreatedDate": "30/30/2022",
+          "ModifiedBy": null,
+          "ModifiedDate": "30/30/2022"
+        }
+      ]
+  },
+  {
+    "TrialID": 2,
+    "TrialAlias": "abc",
+    "Protocol": "20815567",
+     "CreatedBy":1,
+     "CreatedDate": "21/21/2022",
+     "ModifiedBy": null,
+     "ModifiedDate": "30/30/2022",
+     "TrialSites": [
+       {
+         "TrialID":2,
+         "SiteID": 2,
+         "SiteName": "Chennai",
+         "InvestigatorName":"Robin",
+         "TrialSiteCountry": "India",
+         "CreatedBy":1,
+         "CreatedDate": "30/30/2022",
+         "ModifiedBy": null,
+         "ModifiedDate": "30/30/2022"
+       },
+       {
+         "TrialID":2,
+         "SiteID": 3,
+         "SiteName": "London",
+         "InvestigatorName":"Robin",
+         "TrialSiteCountry": "UK",
+         "CreatedBy":1,
+         "CreatedDate": "30/30/2022",
+         "ModifiedBy": null,
+         "ModifiedDate": "30/30/2022"
+       },
+       {
+         "TrialID":2,
+         "SiteID": 1,
+         "SiteName": "LosAngelus",
+         "InvestigatorName":"Robin",
+         "TrialSiteCountry": "America",
+         "CreatedBy":1,
+         "CreatedDate": "30/30/2022",
+         "ModifiedBy": null,
+         "ModifiedDate": "30/30/2022"
+       }
+     ]
+ }
+]
+
+
+  const handleChange =  (event) =>{
+    setWrite(event.target.value)
+  }
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">TrialID</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={protocol}
+          label="Trial ID"
+          onChange={handleChange}
+        >
+      {message.length > 0 && message.map((msg, index)=>{
+        return(
+          <MenuItem index={index} value={msg.TrialID}>{msg.TrialID}</MenuItem>
+        )
+      })}
+       </Select>
+      </FormControl>
+    </Box>
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">SiteName</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={protocol}
+          label="Trial ID"
+          onChange={handleChange}
+        >
+       {message.length > 0 && message.map((msg, index)=>{
+        return(
+          msg.TrialSites.length > 0 && msg.TrialSites.map((trialSite, index) =>{
+            return(
+            <MenuItem index={index} value={trialSite.SiteName}>{trialSite.SiteName}</MenuItem>
+            )
+          }
+        )
+        )
+      })}
+      </Select>
+      </FormControl>
+    </Box>
+    
+
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Protocol</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={protocol}
+          label="Protocol"
+          onChange={handleChange}
+        >
+          {message.map((msg,index) =>{
+            return(
+              <MenuItem index={index} value={msg.Protocol}>{msg.Protocol}</MenuItem>
+              )
+          })}
+
+        </Select>
+      </FormControl>
+    </Box>
+    <TextField id="outlined-basic" label="Outlined" onChange={(event)=>{setWrite(event.target.value)}} variant="outlined" />
+      <Typography variant="h6" color="red">{write}</Typography>
+
+    </Box>
+  );
+}
