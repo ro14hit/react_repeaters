@@ -1,3 +1,5 @@
+
+
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -73,6 +75,9 @@ export default function BasicForm() {
                     value={firstName}
                     onInput={(e) => setFirstName(e.target.value)}
                     autoFocus
+                    inputProps={{
+                      maxLength: 5,
+                    }}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -85,6 +90,9 @@ export default function BasicForm() {
                     id="middleName"
                     label="Middle Name"
                     autoFocus
+                    inputProps={{
+                      maxLength: 5,
+                    }}
                   />
                 </Grid>
                 <Grid item xs={6}>
