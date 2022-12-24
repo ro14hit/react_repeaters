@@ -1,0 +1,219 @@
+
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/system';
+import Paper from '@mui/material/Paper';
+import { useState } from 'react';
+import { borders } from '@mui/system';
+import Alert from '@mui/material/Alert';
+const name = [];
+
+const theme = createTheme();
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+export default function BasicForm() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [vendorId, setVendorID] = useState('');
+
+  const handleSubmit = () =>{
+     e.preventDefault();
+
+     // use async with handle submit  and await for axios call here
+     
+    }
+
+  
+
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <Container component="main">
+          <Box
+            sx={{
+              marginTop: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              border: "1px solid red",
+              padding: "5%",
+              borderRadius: "25px"
+
+            }
+          }
+          >
+          
+            <h2 align="center">Personal Information</h2>
+            <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit}>
+              <Grid
+                container
+                rowSpacing={2}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+              
+                <Grid item xs={6}>
+                
+                  <TextField
+                    autoComplete="given-name"
+                    name="firstName"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    value={firstName}
+                    onInput={(e) => setFirstName(e.target.value)}
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                
+                  <TextField
+                    autoComplete="given-name"
+                    name="middleName"
+                    required
+                    fullWidth
+                    id="middleName"
+                    label="Middle Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                
+                  <TextField
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="family-name"
+                    value={lastName}
+                    onInput={(e) => setLastName(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="email"
+                    name="email"
+                    autoComplete="family-name"
+                    value={email}
+                    onInput={(e) => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Box sx={{ mt: 1, width: '100%' }}>
+                
+                  <h2 align="center">Trial and Vendor Information</h2>
+                  <Grid
+                    container
+                    rowSpacing={2}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                  
+                    <Grid item xs={6}>
+                    
+                      <TextField
+                        autoComplete="given-name"
+                        name="vendorId"
+                        required
+                        fullWidth
+                        id="vendorID"
+                        label="VendorID"
+                        autoFocus
+                        value={vendorId}
+                        onInput={(e) => setVendorID(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                    
+                      <TextField
+                        autoComplete="given-name"
+                        name="VendorName"
+                        required
+                        fullWidth
+                        id="VendorName"
+                        label="Vendor Name"
+                        autoFocus
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                    
+                      <TextField
+                        autoComplete="given-name"
+                        name="TrialAlias"
+                        required
+                        fullWidth
+                        id="TrialAlias"
+                        label="Trial Alias"
+                        autoFocus
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                    
+                      <TextField
+                        autoComplete="given-name"
+                        name="TrialStart"
+                        required
+                        fullWidth
+                        id="TrialStart"
+                        label="Trial Start Date"
+                        autoFocus
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                    
+                      <TextField
+                        autoComplete="given-name"
+                        name="TrialEnd"
+                        required
+                        fullWidth
+                        id="TrialEnd"
+                        label="Trial End Date"
+                        autoFocus
+                      />
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Grid item xs={16}>
+                
+                  <Box
+                    m={1}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                  
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      color="primary"
+                      sx={{ height: 50 }}
+                      onSubmit={handleSubmit}
+                    >
+                    
+                      Submit
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </>
+  );
+}
