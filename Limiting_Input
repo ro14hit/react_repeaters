@@ -11,12 +11,20 @@ export default function BasicButtons() {
     if(temp.match(lets)){
       setError("")
     }
-    else{ setError("Can not contain special characters and numbers")}
-   
+    else{ setError("Can not contain special characters and numbers")}  }
+  let hero = (e) =>{
+    if(e.target.value===""){
+      setError("Field can not be empty")
+    }
+  }
+  let heros = (e) =>{
+    
+      setError("")
+    
   }
   return (
     <Stack spacing={2} direction="row">
-      <TextField label="FuckOff" onChange={onChange} error={!!error} helperText={error}></TextField>
+      <TextField label="FuckOff" onBlur={hero} onFocus={heros} onChange={onChange} error={!!error} helperText={error}></TextField>
       <Button variant="contained" disabled={!!error}>Text</Button>
 
     </Stack>
