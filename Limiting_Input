@@ -17,7 +17,7 @@ export default function BasicButtons() {
   return (
     <Stack spacing={2} direction="row">
       <TextField label="FuckOff" onChange={onChange} error={!!error} helperText={error}></TextField>
-      <Button variant="text">Text</Button>
+      <Button variant="contained" disabled={!!error}>Text</Button>
 
     </Stack>
   );
