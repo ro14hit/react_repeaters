@@ -1,0 +1,24 @@
+import React,{useState} from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+export default function BasicButtons() {
+  let [error,setError] = useState();
+  let onChange = (e) =>{
+    let temp = e.target.value;
+    var lets = /^[A-Za-z]+$/;
+    if(temp.match(lets)){
+      setError("")
+    }
+    else{ setError("Can not contain special characters and numbers")}
+   
+  }
+  return (
+    <Stack spacing={2} direction="row">
+      <TextField label="FuckOff" onChange={onChange} error={!!error} helperText={error}></TextField>
+      <Button variant="text">Text</Button>
+
+    </Stack>
+  );
+}
