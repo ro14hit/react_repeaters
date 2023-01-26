@@ -1,0 +1,42 @@
+import React,{useState,useEffect} from 'react';
+import Box from '@mui/material/Box';
+import {TextField,Typography} from '@mui/material';
+
+export default function BasicTextFields() {
+  const [registration,setRegistration] = useState({
+    firstName : "King",
+    middleName : "Kong",
+    lastName : "Robin",
+    email : "rohit@network.lilly.com",
+    mobileNo : "9911449441",
+  })
+
+  const onChange = (e,registration) =>{
+    setRegistration({
+      ...registration,
+      [e.target.name] : e.target.value,
+    })
+  }
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField name="firstName" id="firstName" label="First Name" value={registration.firstName} onChange={(e)=>onChange(e,registration)} variant="outlined" size="small" />
+      <TextField name="middleName" id="middleName" label="Middle Name" value={registration.middleName} onChange={(e)=>onChange(e,registration)} variant="outlined" size="small" />
+      <TextField name="lastName" id="standard-basic" label="Last Name" value={registration.lastName} onChange={(e)=>onChange(e,registration)} variant="outlined" size="small" />
+      <TextField name="email" id="standard-basic" label="Email" value={registration.email} onChange={(e)=>onChange(e,registration)} variant="outlined" size="small" />
+      <TextField name="mobileNo" id="standard-basic" label="Mobile No." value={registration.mobileNo} onChange={(e)=>onChange(e,registration)} variant="outlined" size="small" />
+      <Typography>{registration.firstName}</Typography>
+      <Typography>{registration.middleName}</Typography>
+      <Typography>{registration.lastName}</Typography>
+      <Typography>{registration.email}</Typography>
+      <Typography>{registration.mobileNo}</Typography>
+      
+    </Box>
+  );
+}
