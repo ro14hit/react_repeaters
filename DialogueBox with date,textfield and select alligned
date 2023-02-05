@@ -10,19 +10,14 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Grid, TextField } from '@mui/material';
-import dayjs from 'dayjs';
 import InputLabel from '@mui/material/InputLabel';
-
-import Stack from '@mui/material/Stack';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import FormHelperText from '@mui/material/FormHelperText';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import {Select,Box} from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -31,6 +26,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
   },
+  '& .MuiFormControl-root-MuiTextField-root':{
+    width: "100%"
+  }
 }));
 
 function BootstrapDialogTitle(props) {
@@ -79,7 +77,7 @@ export default function CustomizedDialogs() {
   }
 
   return (
-    <div component="form" onSubmit={onSubmit}>
+    <div >
       <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
@@ -96,12 +94,13 @@ export default function CustomizedDialogs() {
           Fucked Up
         </BootstrapDialogTitle>
         <DialogContent dividers>
+          <Box>
             <Grid container columns={12} rowSpacing={2} columnSpacing={4}>
               <Grid item xs={6}>
-            <TextField value={one} onChange={(e)=>setOne(e.target.value)} required label="Kings"></TextField>
+            <TextField helperText=" " value={one} onChange={(e)=>setOne(e.target.value)} required label="Kings"></TextField>
             </Grid>
             <Grid item xs={6}>
-            <TextField required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
+            <TextField helperText=" " required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
             <Typography>{}</Typography>
             </Grid>
             
@@ -115,13 +114,12 @@ export default function CustomizedDialogs() {
           // value={value}
           value={null}
           // onChange={handleChange}
-          renderInput={(params) => <TextField styles={{"width":"80%"}} required {...params} />}
+          renderInput={(params) => <TextField helperText=" " styles={{"width":"80%"}} required {...params} />}
         />
             {/* </Stack> */}
     </LocalizationProvider>
             </Grid>
             <Grid item xs={6}>
-            {//Pass Width 100% in MuiFormControl-root-MuiTextField-root//}
         <LocalizationProvider required dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label="Date desktop"
@@ -130,7 +128,7 @@ export default function CustomizedDialogs() {
           // value={value}
           value={null}
           // onChange={handleChange}
-          renderInput={(params) => <TextField styles={{"width":"50%"}} {...params} />}
+          renderInput={(params) => <TextField helperText=" " styles={{"width":"50%"}} {...params} />}
         />
             {/* </Stack> */}
     </LocalizationProvider>
@@ -148,10 +146,24 @@ export default function CustomizedDialogs() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
+        <FormHelperText>{null}</FormHelperText>
       </FormControl>
             </Grid>
+            <Grid item xs={6}>
+            <TextField helperText=" " required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
+            <Typography>{}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+            <TextField helperText=" " required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
+            <Typography>{}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+            <TextField helperText=" " required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
+            <Typography>{}</Typography>
             </Grid>
             
+            </Grid>
+            </Box>
             {/* <Button>Romario<Button> */}
         </DialogContent>
         <DialogActions>
