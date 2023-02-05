@@ -1,0 +1,141 @@
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { Button, Grid, Typography } from "@mui/material";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { isEmpty } from "lodash";
+export default function BasicTextFields() {
+  let [firstName, setFirstName] = useState("");
+  let [error, setError] = useState("");
+
+  let onChange = (e) => {
+    setFirstName(e.target.value);
+    if (e.target.value.startsWith(" ") || e.target.value.includes("@")) {
+      setError("Invalid First Name");
+    } else setError("");
+  };
+
+  let onSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <Box
+      sx={{
+        marginTop: 0,
+        display: "flex",
+        flexDirection: "column",
+        width: "auto",
+        border: "1px solid red",
+        padding: "5%",
+        borderRadius: "25px"
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <form onSubmit={onSubmit}>
+        <Typography variant="h5" color="navajowhite" align="center">
+          Legendary Sanin
+        </Typography>
+        <Grid style={{"marginTop":"0.5%"}} container columns={16} rowSpacing={2} columnSpacing={4}>
+          <Grid item xs={8}>
+            <TextField
+              helperText={isEmpty(error) ? " " : error}
+              error={isEmpty(error) ? false : true}
+              value={firstName}
+              onChange={onChange}
+              fullWidth
+              required
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <FormControl fullWidth required  sx={{ minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          label="Age"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl></Grid>
+      <Grid item xs={8}>
+            <TextField
+              helperText={isEmpty(error) ? " " : error}
+              error={isEmpty(error) ? false : true}
+              value={firstName}
+              onChange={onChange}
+              fullWidth
+              required
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <TextField
+              helperText={isEmpty(error) ? " " : error}
+              error={isEmpty(error) ? false : true}
+              value={firstName}
+              onChange={onChange}
+              fullWidth
+              required
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <TextField
+              helperText={isEmpty(error) ? " " : error}
+              error={isEmpty(error) ? false : true}
+              value={firstName}
+              onChange={onChange}
+              fullWidth
+              required
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <FormControl fullWidth required >
+        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          label="Age"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl></Grid>
+        </Grid>
+        <Box>
+        <Button
+          styles={{ display: "flex", align: "center" }}
+          type="submit"
+          variant="contained"
+          size= "large"
+        >
+          Fixed
+        </Button></Box>
+      </form>
+    </Box>
+  );
+}
