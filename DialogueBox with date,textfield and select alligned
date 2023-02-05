@@ -1,0 +1,166 @@
+import React,{useState} from 'react';
+import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
+import { Grid, TextField } from '@mui/material';
+import dayjs from 'dayjs';
+import InputLabel from '@mui/material/InputLabel';
+
+import Stack from '@mui/material/Stack';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+function BootstrapDialogTitle(props) {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+}
+
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default function CustomizedDialogs() {
+  const [open, setOpen] = React.useState(false);
+  const [one,setOne] = useState('Naruto');
+  const [two,setTwo] = useState('Saske');
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  let onSubmit =(e) =>{
+    e.preventDefault();
+    handleClose();
+  }
+
+  return (
+    <div component="form" onSubmit={onSubmit}>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open dialog
+      </Button>
+      <Typography>{two},{one}</Typography>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        modal={true}
+        disablePortal= "true"
+      >
+        <form>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Fucked Up
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+            <Grid container columns={12} rowSpacing={2} columnSpacing={4}>
+              <Grid item xs={6}>
+            <TextField value={one} onChange={(e)=>setOne(e.target.value)} required label="Kings"></TextField>
+            </Grid>
+            <Grid item xs={6}>
+            <TextField required label="Kings" value={two} onChange={(e)=>setTwo(e.target.value)}></TextField>
+            <Typography>{}</Typography>
+            </Grid>
+            
+                <Grid item xs={6}>
+        <LocalizationProvider styles={{"width":"80%"}} required dateAdapter={AdapterDayjs}>
+        <DesktopDatePicker
+        styles={{"width":"80%"}}
+          label="Date desktop"
+          required
+          inputFormat="MM/DD/YYYY"
+          // value={value}
+          value={null}
+          // onChange={handleChange}
+          renderInput={(params) => <TextField styles={{"width":"80%"}} required {...params} />}
+        />
+            {/* </Stack> */}
+    </LocalizationProvider>
+            </Grid>
+            <Grid item xs={6}>
+            {//Pass Width 100% in MuiFormControl-root-MuiTextField-root//}
+        <LocalizationProvider required dateAdapter={AdapterDayjs}>
+        <DesktopDatePicker
+          label="Date desktop"
+          required
+          inputFormat="MM/DD/YYYY"
+          // value={value}
+          value={null}
+          // onChange={handleChange}
+          renderInput={(params) => <TextField styles={{"width":"50%"}} {...params} />}
+        />
+            {/* </Stack> */}
+    </LocalizationProvider>
+            </Grid>
+            <Grid item xs={6}>
+            <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Age"
+          // onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+            </Grid>
+            </Grid>
+            
+            {/* <Button>Romario<Button> */}
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" onSubmit={onSubmit}>
+            Save changes
+          </Button>
+        </DialogActions>
+        </form>
+      </BootstrapDialog>
+    </div>
+  );
+}
