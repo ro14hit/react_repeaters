@@ -49,3 +49,4 @@ const [components, setComponents] = useState([]);
       {components}
     </Box>
   );
+}
