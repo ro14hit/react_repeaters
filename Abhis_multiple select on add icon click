@@ -1,0 +1,42 @@
+import React, { useState } from "react";
+
+export default function BasicSelect() {
+  const [element, setElement] = useState([]);
+  const [nInput,setNInput] = useState(0)
+  const [values,setValues]= useState([{value1:'',value2:''}]);
+
+  function clicked() {
+    setNInput(nInput+1)
+    let narr = values;
+    narr.push({value1:'',value2:''})
+    setValues(narr)
+    setElement([...element,<div key={nInput+1}>
+      <input data-key={nInput+1} onChange={(e)=>handleValues(e,0)}/>
+      <input data-key={nInput+1} onChange={(e)=>handleValues(e,1)}/>
+      </div>
+    ]);
+  }
+  const handleValues = (e,i)=>{
+    console.log("row",e.target.getAttribute('data-key'),i,e.target.value)
+
+    let row = e.target.getAttribute('data-key')
+    let narr = values
+    if(i==0){
+      narr[row] = {value1:e.target.value,value2:values[row].value2}
+    }else{
+      narr[row] = {value1:values[row].value1,value2:e.target.value}
+    }
+    console.log(narr)
+     setValues(narr)
+  }
+  return (
+    <div>
+      <div key={0}>
+        <input key='0' data-key='0'  onChange={(e)=>handleValues(e,0)}></input>
+        <input key='0' data-key='0'  onChange={(e)=>handleValues(e,1)}></input>
+        <button onClick={(e) => clicked(e)}>Rin</button>
+      </div>
+      {element}
+    </div>
+  );
+}
