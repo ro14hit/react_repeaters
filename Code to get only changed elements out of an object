@@ -47,3 +47,23 @@ const updatedObj = {
 
 const changedValues = getChangedValues(originalObj, updatedObj);
 console.log(changedValues); // { name: 'John Smith', street: '456 Oak St' }
+
+
+
+const obj = {
+  name: 'John',
+  age: 30,
+  address: '123 Main St',
+  phone: '555-555-1212',
+};
+
+const arr = ['age', 'phone'];
+
+const filteredObj = Object.keys(obj)
+  .filter(key => arr.includes(key))
+  .reduce((acc, key) => {
+    acc[key] = obj[key];
+    return acc;
+  }, {});
+
+console.log(filteredObj); // Output: { age: 30, phone: '555-555-1212' }
