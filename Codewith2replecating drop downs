@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { Button, MenuItem, Select, FormControl, InputLabel, Input, Box } from '@material-ui/core';
+
+function Dropdowns() {
+  const [dropdowns, setDropdowns] = useState([{ id: 0, option1: '', option2: [] }]);
+  const [counter, setCounter] = useState(1);
+
+  const handleDropdownChange = (id, field, value) => {
+    const newDropdowns = dropdowns.map(dropdown => {
+      if (dropdown.id === id) {
+        return { ...dropdown, [field]: value };
+      }
+      return dropdown;
+    });
+    setDropdowns(newDropdowns);
+  };
+
+  const handleAddDropdowns = () => {
+    setDropdowns([...dropdowns, { id: counter, option1: '', option2: [] }]);
+    setCounter(counter + 1);
+  };
+
+  const handleDeleteDropdowns = (id) => {
+    const newDropdowns = dropdowns.filter(dropdown => dropdown.id !== id);
+    setDropdowns(newDropdowns);
+  };
+
+  const handleSaveDropdowns = () => {
+    let hasEmptyFields = false;
+    const dropdownInputs = dropdowns.map((dropdown) => {
+      if (!dropdown.option1 || dropdown.option2.length === 0) {
+        hasEmptyFields = true;
+      }
+      return {
+        key1: dropdown.option1,
+        key2: dropdown.option2,
+      };
+    });
+    if (hasEmptyFields) {
+      alert('Please select an option in all dropdowns');
+      return;
+    }
+    const data = { dropdownInputs };
+    console.log(data);
+  };
+
+  return (
+    <div>
+      {dropdowns.map((dropdown) => (
+        <Box key={dropdown.id} display="flex" alignItems="center" justifyContent="center" my={2}>
+          <FormControl style={{ width: 250, marginRight: 20 }}>
+            <InputLabel>Select Option 1</InputLabel>
+            <Select value={dropdown.option1} onChange={(e) => handleDropdownChange(dropdown.id, 'option1', e.target.value)}>
+              <MenuItem value="">Select Option 1</MenuItem>
+              <MenuItem value="Option 1">Option 1</MenuItem>
+              <MenuItem value="Option 2">Option 2</MenuItem>
+              <MenuItem value="Option 3">Option 3</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl style={{ width: 250 }}>
+            <InputLabel>Select Option 2</InputLabel>
+            <Select
+              multiple
+              value={dropdown.option2}
+              onChange={(e) => handleDropdownChange(dropdown.id, 'option2', e.target.value)}
+              input={<Input />}
+              renderValue={(selected) => selected.join(', ')}
+            >
+              <MenuItem value="Option A">Option A</MenuItem>
+              <MenuItem value="Option B">Option B</MenuItem>
+              <MenuItem value="Option C">Option C</MenuItem>
+            </Select>
+          </FormControl>
+          {dropdowns.length > 1 ? (
+            <Button variant="contained" color="secondary" onClick={() => handleDeleteDropdowns(dropdown.id)}>Delete</Button>
+          ) : (
+            <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>
+          )}
+        </Box>
+      ))}
+      {dropdowns.length > 1 && <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>}
+      <Button variant="contained" color="primary" onClick={handleSaveDropdowns}>Save</Button>
+    </div>
+  );
+}
+
+export default Dropdowns;
