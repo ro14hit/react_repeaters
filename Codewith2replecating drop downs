@@ -13,6 +13,21 @@ function Dropdowns() {
       return dropdown;
     });
     setDropdowns(newDropdowns);
+
+    let hasEmptyFields = false;
+    const dropdownInputs = newDropdowns.map((dropdown) => {
+      if (!dropdown.option1 || dropdown.option2.length === 0) {
+        hasEmptyFields = true;
+      }
+      return {
+        key1: dropdown.option1,
+        key2: dropdown.option2,
+      };
+    });
+    if (!hasEmptyFields) {
+      const data = { dropdownInputs };
+      console.log(data);
+    }
   };
 
   const handleAddDropdowns = () => {
@@ -23,26 +38,12 @@ function Dropdowns() {
   const handleDeleteDropdowns = (id) => {
     const newDropdowns = dropdowns.filter(dropdown => dropdown.id !== id);
     setDropdowns(newDropdowns);
-  };
-
-  const handleSaveDropdowns = (e) => {
-    e.preventDefault();
-    let hasEmptyFields = false;
-    const dropdownInputs = dropdowns.map((dropdown) => {
-      if (!dropdown.option1 || dropdown.option2.length === 0) {
-        hasEmptyFields = true;
-      }
-      return {
-        key1: dropdown.option1,
-        key2: dropdown.option2,
-      };
-    });
-    if (hasEmptyFields) {
-      alert('Please select an option in all dropdowns');
-      return;
+  
+    // Reduce index of subsequent dropdowns by one
+    for (let i = id; i < newDropdowns.length; i++) {
+      newDropdowns[i].id -= 1;
     }
-    const data = { dropdownInputs };
-    console.log(data);
+    setCounter(counter - 1);
   };
 
   return (
@@ -50,7 +51,7 @@ function Dropdowns() {
       {dropdowns.map((dropdown) => (
         <Box key={dropdown.id} display="flex" alignItems="center" justifyContent="center" my={2}>
           <FormControl required style={{ width: 250, marginRight: 20 }}>
-            <InputLabel>Trial Alias</InputLabel>
+            <InputLabel>Trial Alias{dropdown.id+1}</InputLabel>
             <Select value={dropdown.option1} onChange={(e) => handleDropdownChange(dropdown.id, 'option1', e.target.value)}>
               <MenuItem value="">Select Option 1</MenuItem>
               <MenuItem value="Option 1">Option 1</MenuItem>
@@ -80,7 +81,6 @@ function Dropdowns() {
         </Box>
       ))}
       <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>
-      <Button variant="contained" color="primary" onSubmit={handleSaveDropdowns}>Save</Button>
     </div>
   );
 }
