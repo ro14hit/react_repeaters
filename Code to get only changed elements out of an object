@@ -1,0 +1,49 @@
+function getChangedValues(originalObj, updatedObj, parentKey = '') {
+  const changedValues = {};
+
+  for (const key in updatedObj) {
+    const updatedValue = updatedObj[key];
+    const originalValue = originalObj[key];
+    const nestedKey = parentKey ? `${parentKey}.${key}` : key;
+
+    if (updatedValue !== originalValue) {
+      if (typeof updatedValue !== 'object' || updatedValue === null) {
+        // Add top-level key-value pair directly to changedValues
+        changedValues[key] = updatedValue;
+      } else {
+        // Recursively check nested objects for changes
+        const nestedChanges = getChangedValues(originalValue, updatedValue, nestedKey);
+        Object.assign(changedValues, nestedChanges);
+      }
+    }
+  }
+
+  return changedValues;
+}
+
+
+
+
+
+const originalObj = {
+  name: 'John',
+  age: 30,
+  address: {
+    street: '123 Main St',
+    city: 'Anytown',
+    state: 'CA',
+  },
+};
+
+const updatedObj = {
+  name: 'John Smith',
+  age: 30,
+  address: {
+    street: '456 Oak St',
+    city: 'Anytown',
+    state: 'CA',
+  },
+};
+
+const changedValues = getChangedValues(originalObj, updatedObj);
+console.log(changedValues); // { name: 'John Smith', street: '456 Oak St' }
