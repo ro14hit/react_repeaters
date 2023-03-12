@@ -10,6 +10,7 @@ function Dropdowns() {
       if (dropdown.id === id) {
         return { ...dropdown, [field]: value };
       }
+      console.log(dropdown)
       return dropdown;
     });
     setDropdowns(newDropdowns);
@@ -38,6 +39,7 @@ function Dropdowns() {
   const handleDeleteDropdowns = (id) => {
     const newDropdowns = dropdowns.filter(dropdown => dropdown.id !== id);
     setDropdowns(newDropdowns);
+    console.log("Raman",dropdowns)
   
     // Reduce index of subsequent dropdowns by one
     for (let i = id; i < newDropdowns.length; i++) {
