@@ -25,7 +25,8 @@ function Dropdowns() {
     setDropdowns(newDropdowns);
   };
 
-  const handleSaveDropdowns = () => {
+  const handleSaveDropdowns = (e) => {
+    e.preventDefault();
     let hasEmptyFields = false;
     const dropdownInputs = dropdowns.map((dropdown) => {
       if (!dropdown.option1 || dropdown.option2.length === 0) {
@@ -45,11 +46,11 @@ function Dropdowns() {
   };
 
   return (
-    <div>
+    <div component="form">
       {dropdowns.map((dropdown) => (
         <Box key={dropdown.id} display="flex" alignItems="center" justifyContent="center" my={2}>
-          <FormControl style={{ width: 250, marginRight: 20 }}>
-            <InputLabel>Select Option 1</InputLabel>
+          <FormControl required style={{ width: 250, marginRight: 20 }}>
+            <InputLabel>Trial Alias</InputLabel>
             <Select value={dropdown.option1} onChange={(e) => handleDropdownChange(dropdown.id, 'option1', e.target.value)}>
               <MenuItem value="">Select Option 1</MenuItem>
               <MenuItem value="Option 1">Option 1</MenuItem>
@@ -57,8 +58,8 @@ function Dropdowns() {
               <MenuItem value="Option 3">Option 3</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ width: 250 }}>
-            <InputLabel>Select Option 2</InputLabel>
+          <FormControl style={{ width: 250 }} required>
+            <InputLabel>Site Name</InputLabel>
             <Select
               multiple
               value={dropdown.option2}
@@ -74,12 +75,12 @@ function Dropdowns() {
           {dropdowns.length > 1 ? (
             <Button variant="contained" color="secondary" onClick={() => handleDeleteDropdowns(dropdown.id)}>Delete</Button>
           ) : (
-            <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>
+              <div></div>
           )}
         </Box>
       ))}
-      {dropdowns.length > 1 && <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>}
-      <Button variant="contained" color="primary" onClick={handleSaveDropdowns}>Save</Button>
+      <Button variant="contained" color="primary" onClick={handleAddDropdowns}>Add</Button>
+      <Button variant="contained" color="primary" onSubmit={handleSaveDropdowns}>Save</Button>
     </div>
   );
 }
