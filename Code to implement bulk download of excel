@@ -1,0 +1,25 @@
+ const handleExport = async(()=>{
+   const exportDataArray =  await formatExportData();
+   const ws = XLSX.utils.json_to_sheet(exportDataArray);
+  const wb = { Sheets: {'data': ws}, SheetNames: ['data']};
+  const excelBuffer = XLSX.write(wb, {bookType: 'xlsx', type: 'array'});
+  const sheetData = new Blob([excelBuffer], {type: fileType });
+  FileSaver.saveAs(sheetData, 'data' + fileExtension);
+}
+}
+
+
+
+explanation:
+
+const exportDataArray = await formatExportData();: Calls a function called formatExportData() and awaits its response, which is then assigned to a variable called exportDataArray. The formatExportData() function likely formats the data that will be exported.
+
+const ws = XLSX.utils.json_to_sheet(exportDataArray);: Uses the json_to_sheet function from the XLSX library to convert the exportDataArray into a worksheet.
+
+const wb = { Sheets: {'data': ws}, SheetNames: ['data']};: Creates a workbook object (wb) that contains the worksheet (ws) and a sheet name called 'data'.
+
+const excelBuffer = XLSX.write(wb, {bookType: 'xlsx', type: 'array'});: Uses the write function from the XLSX library to write the wb workbook object as an Excel file in an array format.
+
+const sheetData = new Blob([excelBuffer], {type: fileType });: Converts the Excel file array (excelBuffer) into a blob object (sheetData) with a specified fileType.
+
+FileSaver.saveAs(sheetData, 'data' + fileExtension);: Uses the FileSaver library to save the blob object (sheetData) as a file with a name of 'data' and a specified file extension (fileExtension).
