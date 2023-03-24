@@ -1,4 +1,9 @@
- const handleExport = async(()=>{
+const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const fileExtension = '.xlsx';
+
+// formatExportData is a function which is responsible for formatting object got from back end
+
+const handleExport = async(()=>{
    const exportDataArray =  await formatExportData();
    const ws = XLSX.utils.json_to_sheet(exportDataArray);
   const wb = { Sheets: {'data': ws}, SheetNames: ['data']};
