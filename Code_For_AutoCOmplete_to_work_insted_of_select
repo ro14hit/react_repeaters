@@ -1,0 +1,60 @@
+import { useState } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
+const nations = [
+  { name: 'United States', dialCode: '+1' },
+  { name: 'Canada', dialCode: '+16' },
+  { name: 'Mexico', dialCode: '+52' },
+  { name: 'India', dialCode: '+1' },
+  { name: 'Andra', dialCode: '+16' },
+  { name: 'BA', dialCode: '+52' },
+  { name: 'Bangladesh', dialCode: '+1' },
+  { name: 'Pakistan', dialCode: '+16' },
+  { name: 'BB', dialCode: '+52' },
+  { name: 'Nagaro', dialCode: '+1' },
+  { name: 'UP', dialCode: '+16' },
+  { name: 'BC', dialCode: '+52' },
+  { name: 'Nepal', dialCode: '+1' },
+  { name: 'CP', dialCode: '+16' },
+  { name: 'BD', dialCode: '+52' },
+  { name: 'China', dialCode: '+1' },
+  { name: 'PP', dialCode: '+16' },
+  { name: 'BE', dialCode: '+52' },
+  { name: 'Sri Lanka', dialCode: '+1' },
+  { name: 'BP', dialCode: '+16' },
+  { name: 'BF', dialCode: '+52' },
+  { name: 'Bhutan', dialCode: '+1' },
+  { name: 'AQ', dialCode: '+16' },
+  { name: 'BG', dialCode: '+52' },
+  // add more nations here
+];
+
+function App() {
+  const [selectedNation, setSelectedNation] = useState(null);
+  const [diallingCode, setDiallingCode] = useState('');
+
+  const handleNationChange = (event, value) => {
+    setSelectedNation(value);
+    setDiallingCode(value ? value.dialCode : '');
+    console.log(value)
+  };
+
+  return (
+    <div>
+      <Autocomplete
+        id="nation-autocomplete"
+        options={nations}
+        getOptionLabel={(option) => option.name}
+        value={selectedNation}
+        onChange={handleNationChange}
+        renderInput={(params) => (
+          <TextField {...params} label="Select nation" variant="outlined" />
+        )}
+      />
+      <p>Dialling code: {diallingCode}</p>
+    </div>
+  );
+}
+
+export default App;
